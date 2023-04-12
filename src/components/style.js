@@ -12,4 +12,5 @@ export default makeStyles(() => ({
         flexGrow: '1',
         padding: '2em',
     }
-}));
+})
+);
