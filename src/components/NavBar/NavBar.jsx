@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, Paper } from '@mui/material';
+import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, DrawerPaper } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import useStyles from './styles'
 import { useTheme } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
+import { Sidebar } from '..';
+import useStyles from './styles';
+
 
 const NavBar = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -66,7 +67,6 @@ const NavBar = () => {
                             variant="temporary"
                             anchor="right"
                             open={mobileOpen}
-                            className={classes.drawerBackground}
                             classes={{ paper: classes.drawerPaper }}
                             ModalProps={{ keepMounted: true }}
                         >
@@ -74,8 +74,8 @@ const NavBar = () => {
 
                         </Drawer>
                     ) : (
-                        <Drawer>
-
+                        <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
+                            <Sidebar setMobileOpen={setMobileOpen} />
                         </Drawer>
 
                     )}
