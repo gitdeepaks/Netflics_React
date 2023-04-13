@@ -1,11 +1,13 @@
-import React from 'react';
-import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery } from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, Paper } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import useStyles from './styles'
 import { useTheme } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
 
 const NavBar = () => {
+    const [mobileOpen, setMobileOpen] = useState(false);
     const classes = useStyles();
     const isMobile = useMediaQuery('(max-width:600px)');
     const theme = useTheme();
@@ -57,6 +59,29 @@ const NavBar = () => {
                 </Toolbar>
 
             </AppBar>
+            <div>
+                <nav className={classes.drawer}>
+                    {isMobile ? (
+                        <Drawer
+                            variant="temporary"
+                            anchor="right"
+                            open={mobileOpen}
+                            className={classes.drawerBackground}
+                            classes={{ paper: classes.drawerPaper }}
+                            ModalProps={{ keepMounted: true }}
+                        >
+                            <Sidebar setMobileOpen={setMobileOpen} />
+
+                        </Drawer>
+                    ) : (
+                        <Drawer>
+
+                        </Drawer>
+
+                    )}
+
+                </nav>
+            </div >
         </>
     )
 }
